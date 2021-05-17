@@ -23,7 +23,7 @@ frameworkVersion: '2'
 provider:
   name: aws
   runtime: nodejs12.x
-  profile: Georjane
+  profile: jane_datagend
   lambdaHashingVersion: 20201221
 
 # you can overwrite defaults here
@@ -60,7 +60,7 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  candidateSubmission:
+  submit:
     handler: api/candidate.submit
     memorySize: 128
     description: Submit candidate info and starts interview process.
@@ -68,12 +68,9 @@ functions:
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
     events:
-    #  - httpApi:
-    #    path: candidates
-    #    method: post
-     - httpApi:
-         path: /candidates
-         method: post
+     - http:
+        path: /candidates
+        method: get
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
